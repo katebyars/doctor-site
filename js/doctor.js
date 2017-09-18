@@ -1,6 +1,15 @@
 let apiKey = require('./../.env').apiKey;
-export let Doctor = {
+
+export class Doctor {
+  constructor (first, last, bio, title) {
+    this.first = first;
+    this.last = last;
+    this.bio = bio;
+    this.title = title;
+  }
+
   doctorsByIssue (requestURL, issue, user_key){
+
     $.getJSON(requestURL, {
       'user_key' : user_key,
       'query' : issue,
@@ -9,21 +18,15 @@ export let Doctor = {
     }, function(data) {
       if (data.data && data.data.length > 0) {
         let doctors = [];
-
         $.each(data.data, function(i, rep) {
-          doctors.push(rep.profile);
-          // doctors.push(rep.first_name);
-          // doctors.push(rep.middle_name);
-          // doctors.push(rep.last_name);
-          // doctors.push(rep.title);
-          // doctors.push(rep.bio);
+          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.bio, rep.profile.title);
+          $('#searchResult').html('<p>' + doctor.first + ' ' + doctor.last + ' ' + doctor.title + doctor.bio + '</p>');
         });
-      return doctors;
-      console.log("doctor.js" + doctors);
+        return doctors;
       }
       else {
         return '<p>There are no doctors who cover this issue!</p>';
       }
     });
   }
-};
+}
