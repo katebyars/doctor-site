@@ -1,7 +1,5 @@
-
 let apiKey = require('./../.env').apiKey;
 export let Doctor = {
-
   doctorsByIssue (requestURL, issue, user_key){
     $.getJSON(requestURL, {
       'user_key' : user_key,
@@ -9,23 +7,23 @@ export let Doctor = {
       'location' : 'or-portland',
       // 'limit' : 9,
     }, function(data) {
-      console.log(data);
-
-      if (data.data && data.data.length > 0 {
-        let doctors = '<p>Here are your results</p>';
-
-        $.each(data.results, function(i, rep) {
-          doctors += '<p>';
-          doctors += rep.image_url;
-          doctors += rep.first_name + ' ' + rep.middle_name+ ' ' +  rep.last_name+ ' ' +  rep.title;
-          doctors += rep.bio;
-          doctors += '</p>';
-        }
-      });
-    return doctors;
-    else {
-      return null;
-    }
+      // if (data.data && data.data.length > 0) {
+      //   let doctors = [];
+      //
+      //   $.each(data.data, function(i, rep) {
+      //     doctors.push(rep.profile);
+      //     // doctors.push(rep.first_name);
+      //     // doctors.push(rep.middle_name);
+      //     // doctors.push(rep.last_name);
+      //     // doctors.push(rep.title);
+      //     // doctors.push(rep.bio);
+      //   });
+      // return doctors;
+      // console.log(doctors);
+      // }
+      // else {
+      //   return '<p>There are no doctors who cover this issue!</p>';
+      // }
     });
   }
 };
