@@ -1,12 +1,13 @@
-var DoctorModule = require('./../js/doctor.js').DoctorModule;
-let apiKey = require('./../.env').apiKey;
+import { Doctor } from './../js/doctor.js';
 
 $(document).ready(function() {
-  var doctor = new DoctorModule();
-
-  $('#search-form').submit(function(event) {
-    event.preventDefault();
-    var issue = $('#issue').val();
-    doctor.getData(issue, apiKey);
- });
+  $('#search-form').submit(function(e) {
+    e.preventDefault();
+    let issue = $('#issue').val();
+    var apiKey = require('./../.env').apiKey;
+    let doctor = new Doctor();
+    doctor.doctorsByIssue(issue, apiKey);
+  $("input").val("");
+  $("#searchResult").empty();
+  });
 });
