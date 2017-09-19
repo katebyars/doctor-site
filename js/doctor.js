@@ -22,7 +22,7 @@ export class Doctor {
         });
         console.log("doctor.js" + doctors);
         doctors.forEach(function(doctor){
-          $("#searchResult").append('<p> '+ doctor.first_name + '</p>');
+          $("#searchResult").append('<p> '+ doctor + '</p>');
         });
       }
       else {
