@@ -6,6 +6,8 @@ export class Doctor {
     this.last = last;
     this.title = title;
     this.bio = bio;
+    this.phones = [];
+    this.addresses = [];
     this.image = image;
   }
 
@@ -25,7 +27,7 @@ export class Doctor {
           doctors.push(doctor);
         });
         doctors.forEach(function(doctor){
-          $("#searchResult").append('<img src="' + doctor.image + '">' + '<h2> '+ doctor.first + ' ' + doctor.last + ' ' + doctor.title  + '</h2>' + '<p>' + doctor.bio + '<p>');
+          $("#searchResult").append('<div class="col-md-6">'+'<img src="' + doctor.image + '">' + '<h2> '+ doctor.first + ' ' + doctor.last + ' ' + doctor.title  + '</h2>' + '<p>' + doctor.bio + '<p>'+'</div>');
         });
       }
       else {

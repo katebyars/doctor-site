@@ -17,6 +17,7 @@
 *.rar
 *.tar
 *.zip
+*.env
 
 # Logs and databases #
 ############
@@ -35,21 +36,6 @@ Thumbs.db
 # Java and Gradle #
 ############
 build/
-.gradle/
-gradle/
-gradlew*
-settings.gradle
-gradle/wrapper/gradle-wrapper.properties
-
-# IntelliJ #
-############
-
-.idea
-.idea/
-.iml
-.iml/
-*.iml
-out/
 
 # npm #
 ############
