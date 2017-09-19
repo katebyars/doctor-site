@@ -7,17 +7,17 @@
     <title>Doctor Lookup</title>
   </head>
   <body>
-    <div class="container">
-      <div class="jumbotron">
-        <h1>SearchDoc</h1>
+    <div class="container-fluid">
+      <div id="header" class="row">
+        <center><img class="header" src="/images/logo.jpeg"></center>
       </div>
-      <form id="search-form">
-        <div class="form-group">
-          <label for="issue">Enter a medical issue:</label>
-          <input id="issue" type="text">
-        </div>
-        <button type ="submit" class="btn-success">Get Specialists!</button>
-      </form>
+        <form id="search-form">
+          <div class="form-group">
+            <label for="issue">Enter a medical issue:</label>
+            <input id="issue" type="text">
+            <button type ="submit" class="btn-info">Get Specialists!</button>
+          </div>
+        </form>
       <div class="well" id="searchResult"></div>
     </div>
   </body>

@@ -19,7 +19,7 @@ export class Doctor {
 
       if (data.data && data.data.length > 0) {
         let doctors = [];
-
+        $(".well").toggle();
         $.each(data.data, function(i, rep) {
           let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.title, rep.profile.bio, rep.profile.image_url);
           doctors.push(doctor);
