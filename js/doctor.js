@@ -1,11 +1,12 @@
 let apiKey = require('./../.env').apiKey;
 export class Doctor {
 
-  constructor(first, last, title, bio){
+  constructor(first, last, title, bio, image){
     this.first = first;
     this.last = last;
     this.title = title;
     this.bio = bio;
+    this.image = image;
   }
 
   doctorsByIssue (issue, user_key){
@@ -14,24 +15,21 @@ export class Doctor {
 
     $.getJSON(requestURL, {
     }, function(data) {
+      console.log(data);
+
       if (data.data && data.data.length > 0) {
         let doctors = [];
 
         $.each(data.data, function(i, rep) {
-          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.title, rep.profile.bio);
+          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.title, rep.profile.bio, rep.profile.image_url);
           doctors.push(doctor);
-          // doctors.push(rep.profile.middle_name);
-          // doctors.push(rep.profile.last_name);
-          // doctors.push(rep.profile.title);
-          // doctors.push(rep.profile.bio);
         });
-        console.log("doctor.js" + doctors);
         doctors.forEach(function(doctor){
-          $("#searchResult").append('<p> '+ doctor.first + '</p>');
+          $("#searchResult").append('<img src="' + doctor.image + '">' + '<h2> '+ doctor.first + ' ' + doctor.last + ' ' + doctor.title  + '</h2>' + '<p>' + doctor.bio + '<p>');
         });
       }
       else {
-        return '<p>There are no doctors who cover this issue!</p>';
+        $("#searchResult").append('<p>There are no doctors who cover this issue!</p>');
         }
     });
   }
