@@ -1,32 +1,18 @@
 let apiKey = require('./../.env').apiKey;
 
-export class Doctor {
-  constructor (first, last, bio, title) {
-    this.first = first;
-    this.last = last;
-    this.bio = bio;
-    this.title = title;
-  }
+let DoctorModule = function() {
 
-  doctorsByIssue (requestURL, issue, user_key){
 
-    $.getJSON(requestURL, {
-      'user_key' : user_key,
-      'query' : issue,
-      'location' : 'or-portland',
-      // 'limit' : 9,
-    }, function(data) {
-      if (data.data && data.data.length > 0) {
-        let doctors = [];
-        $.each(data.data, function(i, rep) {
-          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.bio, rep.profile.title);
-          $('#searchResult').html('<p>' + doctor.first + ' ' + doctor.last + ' ' + doctor.title + doctor.bio + '</p>');
-        });
-        return doctors;
-      }
-      else {
-        return '<p>There are no doctors who cover this issue!</p>';
-      }
+DoctorModule.prototype.getData = function(issue, apiKey) {
+  $.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' + {this.issue} + '&location=or-portland&skip=0&limit=10&user_key=' +  {this.apiKey})
+    .then(function(results) {
+      results.forEach(function(result) {
+        $('#searchResult').append('<li>' + profile.first_name + '</li>');
+      });
+    })
+    .fail(function() {
+      console.log('something went wrong');
     });
-  }
-}
+  };
+};
+exports.DoctorModule = DoctorModule;
