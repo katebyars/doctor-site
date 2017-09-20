@@ -13,7 +13,16 @@ export class Doctor {
     this.state = state;
     this.zip = zip;
     this.image = image;
-    this.accepts = false;
+    this.accepts = accepts;
+  }
+
+  acceptsPatients(accepts){
+    if(accepts){
+      return 'Accepting new patients!'
+    }
+    else {
+      return 'Not accepting patients!'
+    }
   }
 
   doctorsByIssue (issue, user_key){
@@ -28,25 +37,18 @@ export class Doctor {
         let doctors = [];
         $(".well").toggle();
         $.each(data.data, function(i, rep) {
-          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.title, rep.profile.bio, rep.practices[0].phones[0].number, rep.practices[0].visit_address.street, rep.practices[0].visit_address.street2, rep.practices[0].visit_address.city, rep.practices[0].visit_address.state, rep.practices[0].visit_address.zip, rep.profile.image_url, rep.practices.accepts_new_patients);
+          let doctor = new Doctor(rep.profile.first_name, rep.profile.last_name, rep.profile.title, rep.profile.bio, rep.practices[0].phones[0].number, rep.practices[0].visit_address.street, rep.practices[0].visit_address.street2, rep.practices[0].visit_address.city, rep.practices[0].visit_address.state, rep.practices[0].visit_address.zip, rep.profile.image_url, rep.practices[0].accepts_new_patients);
           doctors.push(doctor);
         });
 
         doctors.forEach(function(doctor){
-          $("#searchResult").append('<div class="col-md-6">' + '<img src="' + doctor.image + '<h2> '+ doctor.first + ' ' + doctor.last + ' ' + doctor.title  + '</h2>' + '<p>' + doctor.bio + '</p>' +  '<p>' + doctor.phone + '</p>' + '</p>' + ' ' + doctor.numberAddress + ' ' + doctor.numberAddress2 + ' ' + doctor.city + ' ' + doctor.state  + ' ' + doctor.zip + '</p>' + ' ' + '</div>');
-
-          // if (doctor.accepts === true) {
-          //   $("#searchResult").append("Dr. " + doctor.last + " " + "is accepting new patients!")
-          // }
-          // else {
-          //   $("#searchResult").append("Dr. " + doctor.last + " " + "is not accepting new patients at this time.")
-          //
-          // }
-      //   });
-      // }
-      // else {
-      //   $("#searchResult").append('<p>There are no doctors who cover this issue!</p>');
-      //   }
+          $("#searchResult").append('<div class="col-md-6">' + '<img src="' + doctor.image + '">' + '<h2>'+ doctor.first + ' ' + doctor.last + ' ' + doctor.title  + '</h2>' + '<p>' + doctor.bio + '</p>' +  '<p> Phone Number: ' + doctor.phone + '</p>' + '<p>Address: ' + doctor.numberAddress + ' ' + doctor.numberAddress2 + ' ' + doctor.city + ' ' + doctor.state  + ' ' + doctor.zip + '</p>' + '<p class="'+ 'doctor.accepts">' + doctor.acceptsPatients(doctor.accepts) +
+          '</p>' + '</div>');
+        });
+      }
+      else {
+        $("#searchResult").append('<p>There are no doctors who cover this issue!</p>');
+        }
     });
   }
 }
