@@ -45,6 +45,7 @@ export class Doctor {
       else {
         $("#showErrors").append('<p>There are no doctors who cover this issue!</p>');
         }
+
     }).fail(function(error) {
       $("#showErrors").append(`There was an error processing your request: ${error.responseText}. Please try again`);
     });

@@ -47,3 +47,5 @@ tmp/
 # bower #
 ###########
 bower_components/
+
+.env
