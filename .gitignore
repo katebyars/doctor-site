@@ -17,7 +17,7 @@
 *.rar
 *.tar
 *.zip
-*.env
+
 
 # Logs and databases #
 ############
