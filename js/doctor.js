@@ -18,21 +18,17 @@ export class Doctor {
 
   acceptsPatients(accepts){
     if(accepts){
-      return 'Accepting new patients!'
+      return 'Accepting new patients!';
     }
     else {
-      return 'Not accepting patients!'
+      return 'Not accepting patients!';
     }
   }
 
   doctorsByIssue (issue, user_key){
-
     let requestURL = 'https://api.betterdoctor.com/2016-03-01/doctors?query=' + issue + '&location=or-portland&skip=0&limit=10&user_key='+ user_key;
 
-    $.getJSON(requestURL, {
-    }, function(data) {
-      console.log(data);
-
+    $.get(requestURL).then(function(data) {
       if (data.data && data.data.length > 0) {
         let doctors = [];
         $(".well").toggle();
@@ -47,8 +43,10 @@ export class Doctor {
         });
       }
       else {
-        $("#searchResult").append('<p>There are no doctors who cover this issue!</p>');
+        $("#showErrors").append('<p>There are no doctors who cover this issue!</p>');
         }
+    }).fail(function(error) {
+      $("#showErrors").append(`There was an error processing your request: ${error.responseText}. Please try again`);
     });
   }
 }

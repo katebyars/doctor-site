@@ -62,7 +62,8 @@ _You Should Be Dead planets are not calculating correctly._
 
 Copyright &copy; 2017 Kate Byars
 
-
+//two word searchResul
+//numbers
 * query the API
 * get doctors by malady
 * list of doctors in the Portland area
